@@ -12,8 +12,8 @@ jobs:
           - 1.19.x
           - 1.20.x
         os:
-          - ubuntu-18.04
           - ubuntu-20.04
+          - ubuntu-22.04
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install Go
@@ -31,6 +31,9 @@ jobs:
 
       - name: Update Go modules
         run: make update-gomod
+
+      - name: Static analysis
+        run: make static-analysis
 
       - name: Test
         run: make check
